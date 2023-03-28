@@ -133,7 +133,7 @@ export const DelegateSection = () => {
               </ButtonOutline>
             </div>
           </div>
-          <div className="grid grid-cols-1 flex-wrap items-center justify-start gap-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-4">
+          <div className="grid grid-cols-1 place-items-center  gap-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-4">
             {delegates?.map((delegate, idx) => (
               <DelegateCard
                 key={idx}

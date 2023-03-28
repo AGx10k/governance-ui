@@ -6,6 +6,7 @@ import {
   SubmittableExtrinsics,
 } from '@polkadot/api/types';
 import { IMethod } from '@polkadot/types-codec/types/interfaces';
+import BN from 'bn.js';
 
 const DEFAULT_OPTIONS = {
   noInitWarn: true,
@@ -50,4 +51,12 @@ export async function signAndSend(
       }
     }
   );
+}
+
+export async function calcEstimatedFee(
+  tx: SubmittableExtrinsic<'promise', SubmittableResult>,
+  sender: string
+): Promise<BN> {
+  const { partialFee } = await tx.paymentInfo(sender);
+  return partialFee.muln(130).divn(100); // to count for weights fee = partialFee * 1.3
 }
